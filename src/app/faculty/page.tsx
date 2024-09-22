@@ -1,5 +1,7 @@
+import FacultyModule from '@/views/modules/faculty/Faculty.component';
+
 function FacultyPage() {
-    return <>Faculty page ne</>;
+    return <FacultyModule></FacultyModule>;
 }
 
 export default FacultyPage;
