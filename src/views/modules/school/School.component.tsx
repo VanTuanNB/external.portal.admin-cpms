@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { ApiResponse } from '@/core/interfaces/common.interface';
 import { ISchoolInfo } from '@/core/services/models/school.model';
 import { SchoolService } from '@/core/services/school.service';
-import { Button, Col, Form, Input, Row, Space, message } from 'antd';
+import { Button, Col, Form, Input, Row, Space, Spin, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
@@ -83,7 +85,7 @@ function SchoolModule() {
     };
 
     return (
-        <div className={cx('wrapper-school')}>
+        <Spin spinning={isLoading} className={cx('wrapper-school')}>
             <div className={cx('wrapper-actions')}>
                 {!editMode ? (
                     <Button type="primary" onClick={() => setEditMode(!editMode)}>
@@ -166,7 +168,7 @@ function SchoolModule() {
                     </Col>
                 </Row>
             </Form>
-        </div>
+        </Spin>
     );
 }
 

@@ -1,5 +1,7 @@
+import NewsModule from '@/views/modules/news/News.component';
+
 function NewsPage() {
-    return <>NewsPage page ne</>;
+    return <NewsModule></NewsModule>;
 }
 
 export default NewsPage;

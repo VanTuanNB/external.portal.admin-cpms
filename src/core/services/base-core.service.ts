@@ -2,12 +2,14 @@
 
 import { environment } from '../configs/env.config';
 import { IDefineApiDocument } from '../interfaces/common.interface';
+import { LocalStorageSide } from '../utils/storage.util';
 import { RequestOptions } from './models/base-core.model';
 
 export class BaseCoreService {
-    private token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-    constructor() {}
+    private token = '';
+    constructor() {
+        this.token = new LocalStorageSide().getStore('cpms-user-info')?.accessToken || '';
+    }
 
     public async requestApiWithAuth<T = any>(document: IDefineApiDocument, options?: RequestOptions): Promise<T> {
         const endpoint = this.handleConfigEndpointUrl(document, options);
@@ -35,12 +37,14 @@ export class BaseCoreService {
 
     private handleConfigEndpointUrl(document: IDefineApiDocument, options?: RequestOptions) {
         console.log('process.env', process.env);
+        console.log(environment);
         let endpoint = document.endpoint;
         if (options && options.slug) {
             endpoint = `${endpoint}/${options.slug}`;
         }
         if (options && options.queryParams && Object.keys(options.queryParams).length) {
             const queryParams = Object.keys(options.queryParams)
+                .filter((key) => options.queryParams[key])
                 .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(options.queryParams[key])}`)
                 .join('&');
             endpoint = `${endpoint}?${queryParams}`;

@@ -1,4 +1,4 @@
-import PrimaryLayout from '@/views/layouts/PrimaryLayout.component';
+import AppComponent from '@/views/App.component';
 import type { Metadata } from 'next';
 import './global.scss';
 
@@ -15,7 +15,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body suppressHydrationWarning={true}>
-                <PrimaryLayout>{children}</PrimaryLayout>
+                <AppComponent>{children}</AppComponent>
             </body>
         </html>
     );

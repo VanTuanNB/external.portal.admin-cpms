@@ -1,5 +1,7 @@
+import CourseModule from '@/views/modules/course/Course.component';
+
 function CoursePage() {
-    return <>Course page ne</>;
+    return <CourseModule></CourseModule>;
 }
 
 export default CoursePage;

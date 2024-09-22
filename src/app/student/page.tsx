@@ -1,5 +1,7 @@
+import StudentModule from '@/views/modules/student/Student.component';
+
 function StudentPage() {
-    return <>Student page ne</>;
+    return <StudentModule></StudentModule>;
 }
 
 export default StudentPage;

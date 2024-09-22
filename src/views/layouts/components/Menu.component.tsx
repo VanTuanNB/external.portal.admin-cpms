@@ -6,61 +6,63 @@ import {
     FundProjectionScreenOutlined,
     HomeOutlined,
     ProfileOutlined,
+    UserAddOutlined,
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 function MenuComponent() {
     const router = useRouter();
     const handleRedirect = (path: string) => {
         router.push(path);
     };
+    const pathname = usePathname();
 
     return (
         <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['1']}
+            selectedKeys={[pathname]}
             items={[
                 {
-                    key: '1',
+                    key: '/',
                     icon: <HomeOutlined />,
                     label: 'Thông tin trường',
                     onClick: () => handleRedirect('/'),
                 },
                 {
-                    key: '2',
+                    key: '/admissions',
+                    icon: <UserAddOutlined />,
+                    label: 'Tuyển sinh',
+                    onClick: () => handleRedirect('/admissions'),
+                },
+                {
+                    key: '/curriculum',
                     icon: <FundProjectionScreenOutlined />,
                     label: 'Chương trình đào tạo',
                     onClick: () => handleRedirect('/curriculum'),
                 },
                 {
-                    key: '3',
+                    key: '/faculty',
                     icon: <BlockOutlined />,
                     label: 'Khối ngành',
                     onClick: () => handleRedirect('/faculty'),
                 },
                 {
-                    key: '4',
+                    key: '/course',
                     icon: <FileZipOutlined />,
                     label: 'Khoá học',
                     onClick: () => handleRedirect('/course'),
                 },
                 {
-                    key: '5',
-                    icon: <BlockOutlined />,
-                    label: 'Khoá học chờ duyệt',
-                    onClick: () => handleRedirect('/course-register'),
-                },
-                {
-                    key: '6',
+                    key: '/student',
                     icon: <ProfileOutlined />,
                     label: 'Học sinh',
                     onClick: () => handleRedirect('/student'),
                 },
                 {
-                    key: '7',
+                    key: '/news',
                     icon: <FileSearchOutlined />,
                     label: 'Tin tức',
                     onClick: () => handleRedirect('/news'),

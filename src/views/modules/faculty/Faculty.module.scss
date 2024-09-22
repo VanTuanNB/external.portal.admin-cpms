@@ -1,0 +1,44 @@
+.filter-container {
+    margin-top: 26px;
+}
+.filter-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filter-title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+
+.submit-search {
+    margin-top: 24px;
+}
+
+.wrapper-table {
+    margin-top: 24px;
+    .total-item {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 16px;
+    }
+}
+
+.wrapper-school {
+    .wrapper-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+}
+
+.wrapper-above {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
