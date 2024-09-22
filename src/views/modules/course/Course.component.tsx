@@ -200,7 +200,7 @@ function CourseModule() {
     return (
         <div className={cx('wrapper-curriculum')}>
             <div className="wrapper-filter">
-                <h2>Khối ngành học</h2>
+                <h2>Khoá học</h2>
                 <div className={cx('filter-container')}>
                     <Row gutter={16}>
                         <Col className="gutter-row" span={8}>
