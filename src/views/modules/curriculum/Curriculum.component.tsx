@@ -99,6 +99,10 @@ function CurriculumModule() {
     };
 
     const onDatePickerChange: any = (value: Dayjs[]) => {
+        if (!value || !value.length) {
+            setFilterParams((prev) => ({ ...prev, durationStart: null, durationEnd: null }));
+            return;
+        }
         setFilterParams((prev) => ({ ...prev, durationStart: value[0], durationEnd: value[1] }));
     };
 
@@ -119,22 +123,22 @@ function CurriculumModule() {
             key: 'title',
         },
         {
-            title: 'Code',
+            title: 'Mã chương trình',
             dataIndex: 'code',
             key: 'code',
         },
         {
-            title: 'Duration Start',
+            title: 'Ngày bắt đầu',
             dataIndex: 'durationStart',
             key: 'durationStart',
         },
         {
-            title: 'Duration End',
+            title: 'Ngày kết thúc',
             dataIndex: 'durationEnd',
             key: 'durationEnd',
         },
         {
-            title: 'Faculties',
+            title: 'Khối ngành',
             dataIndex: 'faculties',
             key: 'faculties',
             render: (faculties: any[]) => (
@@ -150,12 +154,12 @@ function CurriculumModule() {
             ),
         },
         {
-            title: 'Description',
+            title: 'Mô tả',
             dataIndex: 'description',
             key: 'description',
         },
         {
-            title: 'Action',
+            title: 'Hành động',
             dataIndex: 'id',
             key: 'action',
             render: (id: string) => (

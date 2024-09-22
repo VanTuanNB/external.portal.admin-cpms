@@ -11,7 +11,7 @@ import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Spin, message
 import TextArea from 'antd/es/input/TextArea';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ICurriculumEntity } from '../Curriculum.component';
 import styles from '../Curriculum.module.scss';
@@ -24,6 +24,7 @@ const facultyService = new FacultyService();
 function CurriculumDetail() {
     const [editMode, setEditMode] = useState(false);
     const [form] = Form.useForm();
+    const router = useRouter();
     const [submittable, setSubmittable] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [faculties, setFaculties] = useState<IFacultyEntity[]>([]);
@@ -139,33 +140,42 @@ function CurriculumDetail() {
         message.error('Cập nhật thất bại');
     };
 
+    const handleBack = () => {
+        router.back();
+    };
+
     return (
         <Spin spinning={isLoading} className={cx('wrapper-curriculum-detail')}>
             <h2>Chương Trình Đào Tạo</h2>
             <div className="wrapper-form">
                 <div className={cx('wrapper-school')}>
                     <div className={cx('wrapper-actions')}>
-                        {!editMode ? (
-                            <Button type="primary" onClick={() => setEditMode(!editMode)}>
-                                Sửa
+                        <>
+                            <Button style={{ marginRight: 10 }} iconPosition="start" onClick={handleBack}>
+                                Trở lại
                             </Button>
-                        ) : (
-                            <Space>
-                                <Button type="default" onClick={() => setEditMode(!editMode)}>
-                                    Huỷ
+                            {!editMode ? (
+                                <Button type="primary" onClick={() => setEditMode(!editMode)}>
+                                    Sửa
                                 </Button>
+                            ) : (
+                                <Space>
+                                    <Button type="default" onClick={() => setEditMode(!editMode)}>
+                                        Huỷ
+                                    </Button>
 
-                                <Button
-                                    type="primary"
-                                    loading={isLoading}
-                                    iconPosition="start"
-                                    disabled={!submittable}
-                                    onClick={onFinish}
-                                >
-                                    Lưu
-                                </Button>
-                            </Space>
-                        )}
+                                    <Button
+                                        type="primary"
+                                        loading={isLoading}
+                                        iconPosition="start"
+                                        disabled={!submittable}
+                                        onClick={onFinish}
+                                    >
+                                        Lưu
+                                    </Button>
+                                </Space>
+                            )}
+                        </>
                     </div>
                     <Form
                         form={form}

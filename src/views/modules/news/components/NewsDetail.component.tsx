@@ -97,33 +97,42 @@ function NewsDetail() {
         message.error('Cập nhật thất bại');
     };
 
+    const handleBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx('wrapper-curriculum-detail')}>
             <h2>Cập nhật tin tức</h2>
             <div className="wrapper-form">
                 <div className={cx('wrapper-school')}>
                     <div className={cx('wrapper-actions')}>
-                        {!editMode ? (
-                            <Button type="primary" onClick={() => setEditMode(!editMode)}>
-                                Sửa
+                        <>
+                            <Button style={{ marginRight: 10 }} iconPosition="start" onClick={handleBack}>
+                                Trở lại
                             </Button>
-                        ) : (
-                            <Space>
-                                <Button type="default" onClick={() => setEditMode(!editMode)}>
-                                    Huỷ
+                            {!editMode ? (
+                                <Button type="primary" onClick={() => setEditMode(!editMode)}>
+                                    Sửa
                                 </Button>
+                            ) : (
+                                <Space>
+                                    <Button type="default" onClick={() => setEditMode(!editMode)}>
+                                        Huỷ
+                                    </Button>
 
-                                <Button
-                                    type="primary"
-                                    loading={isLoading}
-                                    iconPosition="start"
-                                    disabled={!submittable}
-                                    onClick={onFinish}
-                                >
-                                    Lưu
-                                </Button>
-                            </Space>
-                        )}
+                                    <Button
+                                        type="primary"
+                                        loading={isLoading}
+                                        iconPosition="start"
+                                        disabled={!submittable}
+                                        onClick={onFinish}
+                                    >
+                                        Lưu
+                                    </Button>
+                                </Space>
+                            )}
+                        </>
                     </div>
                     <Form
                         form={form}

@@ -89,6 +89,10 @@ function CourseModule() {
     };
 
     const onDatePickerChange: any = (value: Dayjs[]) => {
+        if (!value || !value.length) {
+            setFilterParams((prev) => ({ ...prev, durationStart: null, durationEnd: null }));
+            return;
+        }
         setFilterParams((prev) => ({ ...prev, durationStart: value[0], durationEnd: value[1] }));
     };
 

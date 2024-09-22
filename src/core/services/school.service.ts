@@ -15,7 +15,6 @@ export class SchoolService extends BaseCoreService {
     }
 
     public update(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.school.update, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));

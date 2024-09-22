@@ -36,8 +36,6 @@ export class BaseCoreService {
     }
 
     private handleConfigEndpointUrl(document: IDefineApiDocument, options?: RequestOptions) {
-        console.log('process.env', process.env);
-        console.log(environment);
         let endpoint = document.endpoint;
         if (options && options.slug) {
             endpoint = `${endpoint}/${options.slug}`;

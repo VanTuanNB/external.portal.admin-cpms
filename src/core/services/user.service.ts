@@ -21,35 +21,30 @@ export class UserService extends BaseCoreService {
     }
 
     public create(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.user.create, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));
     }
 
     public approveCourse(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.user.approve, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));
     }
 
     public completeCourse(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.user.complete, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));
     }
 
     public update(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.user.update, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));
     }
 
     public delete(option: IParamsRequestApi): void {
-        console.log('option', option);
         this.requestApiWithAuth(API_DOCUMENT.user.delete, option)
             .then((res) => option.onSuccess(res))
             .catch((err) => option.onError(err));

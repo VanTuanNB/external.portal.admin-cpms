@@ -103,6 +103,10 @@ function CurriculumCreate() {
         message.error('Cập nhật thất bại');
     };
 
+    const handleBack = () => {
+        router.back();
+    };
+
     return (
         <div className={cx('wrapper-curriculum-detail')}>
             <h2>Tạo mới chương trình đào tạo</h2>
@@ -110,6 +114,9 @@ function CurriculumCreate() {
                 className="wrapper-actions"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
             >
+                <Button style={{ marginRight: 10 }} iconPosition="start" onClick={handleBack}>
+                    Trở lại
+                </Button>
                 <Button
                     type="primary"
                     loading={isLoading}

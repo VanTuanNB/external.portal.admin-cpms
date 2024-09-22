@@ -12,7 +12,7 @@ import { ColumnType } from 'antd/es/table';
 import { TableRowSelection } from 'antd/es/table/interface';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from '../Student.module.scss';
 
@@ -28,22 +28,22 @@ const columnsRegistering = [
         width: 150,
     },
     {
-        title: 'Code',
+        title: 'Mã khóa học',
         dataIndex: 'code',
         key: 'code',
     },
     {
-        title: 'Duration Start',
+        title: 'Ngày bắt đầu',
         dataIndex: 'durationStart',
         key: 'durationStart',
     },
     {
-        title: 'Duration End',
+        title: 'Ngày kết thúc',
         dataIndex: 'durationEnd',
         key: 'durationEnd',
     },
     {
-        title: 'Status',
+        title: 'Trạng thái',
         dataIndex: 'status',
         key: 'status',
         render: () => (
@@ -53,7 +53,7 @@ const columnsRegistering = [
         ),
     },
     {
-        title: 'Description',
+        title: 'Mô tả',
         dataIndex: 'description',
         key: 'description',
     },
@@ -68,22 +68,22 @@ const columns = [
         width: 150,
     },
     {
-        title: 'Code',
+        title: 'Mã khóa học',
         dataIndex: 'code',
         key: 'code',
     },
     {
-        title: 'Duration Start',
+        title: 'Ngày bắt đầu',
         dataIndex: 'durationStart',
         key: 'durationStart',
     },
     {
-        title: 'Duration End',
+        title: 'Ngày kết thúc',
         dataIndex: 'durationEnd',
         key: 'durationEnd',
     },
     {
-        title: 'Status',
+        title: 'Trạng thái',
         dataIndex: 'status',
         key: 'status',
         render: (status: number) => (
@@ -96,7 +96,7 @@ const columns = [
         ),
     },
     {
-        title: 'Description',
+        title: 'Mô tả',
         dataIndex: 'description',
         key: 'description',
     },
@@ -104,6 +104,7 @@ const columns = [
 
 function StudentDetail() {
     const [editMode, setEditMode] = useState(false);
+    const router = useRouter();
     const [form] = Form.useForm();
     const [submittable, setSubmittable] = useState<boolean>(false);
     const [userInfo, setUserInfo] = useState<IUserEntity | null>({} as IUserEntity);
@@ -297,33 +298,42 @@ function StudentDetail() {
 
     const hasSelectedCourses = selectedCourses.length > 0;
 
+    const handleBack = () => {
+        router.back();
+    };
+
     return (
         <Spin spinning={isLoading}>
             <h2>Cập nhật khối ngành</h2>
             <div className="wrapper-form">
                 <div className={cx('wrapper-school')}>
                     <div className={cx('wrapper-actions')}>
-                        {!editMode ? (
-                            <Button type="primary" onClick={() => setEditMode(!editMode)}>
-                                Sửa
+                        <>
+                            <Button style={{ marginRight: 10 }} iconPosition="start" onClick={handleBack}>
+                                Trở lại
                             </Button>
-                        ) : (
-                            <Space>
-                                <Button type="default" onClick={() => setEditMode(!editMode)}>
-                                    Huỷ
+                            {!editMode ? (
+                                <Button type="primary" onClick={() => setEditMode(!editMode)}>
+                                    Sửa
                                 </Button>
+                            ) : (
+                                <Space>
+                                    <Button type="default" onClick={() => setEditMode(!editMode)}>
+                                        Huỷ
+                                    </Button>
 
-                                <Button
-                                    type="primary"
-                                    loading={isLoading}
-                                    iconPosition="start"
-                                    disabled={!submittable}
-                                    onClick={onFinish}
-                                >
-                                    Lưu
-                                </Button>
-                            </Space>
-                        )}
+                                    <Button
+                                        type="primary"
+                                        loading={isLoading}
+                                        iconPosition="start"
+                                        disabled={!submittable}
+                                        onClick={onFinish}
+                                    >
+                                        Lưu
+                                    </Button>
+                                </Space>
+                            )}
+                        </>
                     </div>
                     <Form
                         form={form}

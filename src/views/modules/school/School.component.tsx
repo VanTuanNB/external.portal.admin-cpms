@@ -87,27 +87,30 @@ function SchoolModule() {
     return (
         <Spin spinning={isLoading} className={cx('wrapper-school')}>
             <div className={cx('wrapper-actions')}>
-                {!editMode ? (
-                    <Button type="primary" onClick={() => setEditMode(!editMode)}>
-                        Sửa
-                    </Button>
-                ) : (
-                    <Space>
-                        <Button type="default" onClick={() => setEditMode(!editMode)}>
-                            Huỷ
+                <h2>Thông tin trường</h2>
+                <div>
+                    {!editMode ? (
+                        <Button type="primary" onClick={() => setEditMode(!editMode)}>
+                            Sửa
                         </Button>
+                    ) : (
+                        <Space>
+                            <Button type="default" onClick={() => setEditMode(!editMode)}>
+                                Huỷ
+                            </Button>
 
-                        <Button
-                            type="primary"
-                            loading={isLoading}
-                            iconPosition="start"
-                            disabled={!submittable}
-                            onClick={onFinish}
-                        >
-                            Lưu
-                        </Button>
-                    </Space>
-                )}
+                            <Button
+                                type="primary"
+                                loading={isLoading}
+                                iconPosition="start"
+                                disabled={!submittable}
+                                onClick={onFinish}
+                            >
+                                Lưu
+                            </Button>
+                        </Space>
+                    )}
+                </div>
             </div>
             <Form form={form} layout="vertical" onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
                 <Row gutter={16}>

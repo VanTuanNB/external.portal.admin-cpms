@@ -135,11 +135,6 @@ function AdmissionsModule() {
             key: 'updatedAt',
         },
         {
-            title: 'Mô tả',
-            dataIndex: 'description',
-            key: 'description',
-        },
-        {
             title: 'Hành động',
             dataIndex: 'id',
             key: 'action',

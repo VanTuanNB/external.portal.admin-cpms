@@ -99,6 +99,10 @@ function FacultyModule() {
     };
 
     const onDatePickerChange: any = (value: Dayjs[]) => {
+        if (!value || !value.length) {
+            setFilterParams((prev) => ({ ...prev, durationStart: null, durationEnd: null }));
+            return;
+        }
         setFilterParams((prev) => ({ ...prev, durationStart: value[0], durationEnd: value[1] }));
     };
 
@@ -124,12 +128,12 @@ function FacultyModule() {
             key: 'code',
         },
         {
-            title: 'Ngày hiệu lực',
+            title: 'Ngày bắt đầu',
             dataIndex: 'durationStart',
             key: 'durationStart',
         },
         {
-            title: 'Ngày hết hiệu lực',
+            title: 'Ngày kết thúc',
             dataIndex: 'durationEnd',
             key: 'durationEnd',
         },

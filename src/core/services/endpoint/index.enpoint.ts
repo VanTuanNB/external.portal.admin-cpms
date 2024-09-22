@@ -22,7 +22,7 @@ export const API_DOCUMENT: { [key: string]: { [key: string]: IDefineApiDocument 
         },
         create: {
             endpoint: '/curriculum',
-            method: 'GET',
+            method: 'POST',
         },
         update: {
             endpoint: '/curriculum',

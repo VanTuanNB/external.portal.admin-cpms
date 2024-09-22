@@ -125,12 +125,15 @@ function FacultyCreate() {
 
     const onFinish = () => {
         const payload = formatterPayload();
-        console.log('payload', payload);
         callUpdateApi(payload);
     };
 
     const onFinishFailed = () => {
         message.error('Cập nhật thất bại');
+    };
+
+    const handleBack = () => {
+        router.back();
     };
 
     return (
@@ -140,6 +143,9 @@ function FacultyCreate() {
                 className="wrapper-actions"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
             >
+                <Button style={{ marginRight: 10 }} iconPosition="start" onClick={handleBack}>
+                    Trở lại
+                </Button>
                 <Button
                     type="primary"
                     loading={isLoading}

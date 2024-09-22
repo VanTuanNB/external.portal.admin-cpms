@@ -16,7 +16,7 @@ function PrimaryLayout({ children }: { children: ReactNode }) {
 
     const handleLogout = () => {
         localStorage.removeItem('cpms-user-info');
-        window.location.href = '/login';
+        window.location.replace('/login');
     };
 
     return (
