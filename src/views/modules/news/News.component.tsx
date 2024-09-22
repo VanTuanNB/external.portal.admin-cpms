@@ -5,7 +5,7 @@ import { FormatDate } from '@/core/constants/common.constant';
 import { ApiResponse, ApiResponsePaging, IFilterParams } from '@/core/interfaces/common.interface';
 import { TimezoneUtil } from '@/core/utils/timezone.util';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled, SearchOutlined } from '@ant-design/icons';
-import { Button, Col, Input, message, Modal, Pagination, Row, Space, Table, Tooltip } from 'antd';
+import { Button, Col, Input, message, Modal, Pagination, Row, Space, Table, Tooltip, Typography } from 'antd';
 import classNames from 'classnames/bind';
 
 import { INewsEntity } from '@/core/services/models/news.model';
@@ -18,6 +18,7 @@ import styles from './News.module.scss';
 const cx = classNames.bind(styles);
 const newsService = new NewsService();
 function NewsModule() {
+    const { Paragraph } = Typography;
     const [isLoading, setIsLoading] = useState(false);
     const [dataSource, setDataSource] = useState<INewsEntity[]>([]);
     const [totalItems, setTotalItems] = useState<number>(0);
@@ -127,6 +128,13 @@ function NewsModule() {
             title: 'Mô tả',
             dataIndex: 'description',
             key: 'description',
+            render: (description: string) => {
+                return (
+                    <Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'Hiển thị thêm' }}>
+                        {description}
+                    </Paragraph>
+                );
+            },
         },
         {
             title: 'Hành động',
